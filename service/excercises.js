@@ -17,7 +17,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 
 		0 : {
 			name: 'Bench press',
-			targets: [ ['Chest','Traps'],['Triceps'] ],
+			targets: [ ['Chest'],['Traps','Triceps'] ],
 			variations: ["Inclined", "Declined"],
 			recommended: {
 				reps: 12,
@@ -82,9 +82,9 @@ angular.module('WorkoutApp').factory('excercises',function() {
 			recommended: {
 				reps: 12,
 				sets: 3,
-				weight: 17.5,
+				weight: 50,
 				rest: 90
-			}			
+			}
 		},
 
 		6: {
@@ -114,7 +114,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 		8: {
 			name: 'Bicep curls',
 			targets: [['Biceps', 'Forearms'], []],
-			variations: ['Resistance band', 'Concentration'],
+			variations: ['Resistance band', 'Concentration', 'Standing barbell', 'Dead hang', 'Free moving concentration'],
 			recommended: {
 				reps: 12,
 				sets: 3,
@@ -217,6 +217,18 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				weight: 0,
 				rest: 60
 			}			
+		},
+
+		17: {
+			name: 'Alternating Band Curl-Upper Cuts',
+			targets: [['Biceps'],[]],
+			variations: [],
+			recommended: {
+				reps: 25,
+				sets: 2,
+				weight: 0,
+				rest: 60
+			}			
 		}
 
 	};
@@ -274,6 +286,51 @@ angular.module('WorkoutApp').factory('excercises',function() {
 		});
 
 		return filteredInput;
+
+	};
+
+	excercises.shuffle = function(array) {
+
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+
+	};
+
+	excercises.selectWarmupFrom = function(input){
+
+		var filteredInput =[];
+		var warmup, bodyweightexcercise, highrepexcercise;
+
+		angular.forEach(input, function(excercise){
+			angular.forEach(excercise.recommended, function(value, key){
+				
+				bodyweightexcercise = (key === "weight" && value === 0);
+				highrepexcercise = (key === "reps" && value > 20);
+
+				if ( bodyweightexcercise || highrepexcercise ) {
+					if ($.inArray(excercise, filteredInput) === -1) {
+						filteredInput.push(excercise);
+					}
+				}
+
+			});
+		});
+
+		return filteredInput;		
 
 	};
 
