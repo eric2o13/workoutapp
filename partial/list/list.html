@@ -1,0 +1,53 @@
+<div class="col-md-12" ng-controller="ListCtrl">
+	<div class="row">
+		<div class="col-xs-6">
+			<ul class="excercises list-group">
+				<li ng-repeat="excercise in excercises.list" data-excercise-id="{{excercise.id}}" class="clearfix list-group-item">
+					<div class="col-xs-2 align-right">
+						<span class="id">{{excercise.id}}.</span>
+					</div>
+					<div class="col-xs-10">
+						<h2><a href="/#/excercise/{{excercise.id}}">{{excercise.name}}</a></h2>
+						<em class="movement">{{excercise.movement}}</em>
+						<div class="targets">
+							<ul>
+								<li ng-repeat="(key, target) in excercise.targets">
+									<div ng-if="key == 0">Primary</div>
+									<div ng-if="key == 1">Secondary</div>
+									<ul>
+										<li ng-repeat="subtarget in target">
+											<a href="/" ng-click="createNewTraining(subtarget);">{{subtarget}}</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>	
+						<div class="variations">
+							<ul><li ng-repeat="variation in excercise.variations">{{variation}}</li></ul>
+						</div>
+					</div>
+				</li>
+			</ul>			
+		</div>
+		<div class="col-xs-6">
+			<form ng-submit="createNewTraining()" role="form">
+				<div class="form-group">
+					<label>Create workout</label>
+					<input type="text" ng-model="newWorkout" class="form-control"/>
+				</div>	
+				<button class="btn btn-primary">Create new training</button>
+			</form>
+
+			<pre>{{training.excercises}}</pre>
+			<h4>Todays training</h4>
+			<ul class="list-group">
+				<li ng-repeat="excercise in training.excercises" class="clearfix list-group-item">
+					<h5>{{excercise.name}} - {{excercise.recommended.weight}}Kg</h5>
+					{{excercise.recommended.sets}} sets of {{excercise.recommended.reps}} repetitions, rest {{excercise.recommended.rest}} seconds in between sets.
+				</li>
+			</ul>
+
+		</div>
+	</div>
+
+</div>
