@@ -1,18 +1,387 @@
 angular.module('WorkoutApp').factory('excercises',function() {
 
-	var Excercise = function( id, realid, name, targets, movement, recommended ){
+	var Excercise = function( id, name, targets, recommended, details ){
 
 		this.id = id;
-		this.realid = realid; //referer to original data
 		this.name = name;
 		this.targets = targets;
-		this.movement = movement;
 		this.recommended = recommended;
+		this.details = details;
+		this.movement = (function(){
+
+			var movement = (targets.primary.length > 2 || targets.secondary.length > 0 ) ? "Compound" : "Isolation";
+			return movement;
+
+		})();
 
 	};
 
 	var excercises = {};
 
+	excercises.data = {
+
+		0 : {
+			name: 'Flat bench press',
+			targets: { 
+				primary: [ 'chest' ],
+				secondary: [ 'lats', 'triceps']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 60,
+				weight: 50
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		1 : {
+			name: 'Inclined bench press',
+			targets: { 
+				primary: [ 'chest' ],
+				secondary: [ 'lats', 'triceps']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 60,
+				weight: 50
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		2 : {
+			name: 'Pull ups',
+			targets: { 
+				primary: [ 'traps', 'forearms' ],
+				secondary: [ 'lats']
+			},
+			recommended: {
+				reps: 15,
+				sets: 3,
+				rest: 60,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		3 : {
+			name: 'Dips',
+			targets: { 
+				primary: [ 'chest'],
+				secondary: [ 'triceps', 'lats']
+			},
+			recommended: {
+				reps: 15,
+				sets: 3,
+				rest: 60,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		4 : {
+			name: 'Dumbell pullovers',
+			targets: { 
+				primary: [ 'chest'],
+				secondary: [ 'triceps','back', 'lats']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 60,
+				weight: 20
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},		
+
+		5 : {
+			name: 'Arnold presses',
+			targets: { 
+				primary: [ 'shoulders'],
+				secondary: [ 'back']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 60,
+				weight: 20
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},		
+
+		6 : {
+			name: 'Squats',
+			targets: { 
+				primary: [ 'hamstrings', 'thighs', 'glutes'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 10,
+				sets: 3,
+				rest: 60,
+				weight: 40
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},		
+
+		7 : {
+			name: 'Front squats',
+			targets: { 
+				primary: [ 'hamstrings', 'thighs', 'glutes'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 10,
+				sets: 3,
+				rest: 60,
+				weight: 40
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},		
+
+		8 : {
+			name: 'Crushed grip goblat squats',
+			targets: { 
+				primary: [ 'thighs', 'hamstrings', 'glutes'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 15,
+				sets: 3,
+				rest: 30,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},		
+
+		9 : {
+			name: 'Lunges',
+			targets: { 
+				primary: [ 'hamstrings', 'thighs', 'glutes'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 25,
+				sets: 3,
+				rest: 30,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		10 : {
+			name: 'Inclined dumbbell presses',
+			targets: { 
+				primary: [ 'chest', 'triceps', 'lats'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 30,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'Execute with resistance band'
+			}
+		},
+
+		11 : {
+			name: 'One arm inclined dumbbell presses',
+			targets: { 
+				primary: [ 'chest', 'triceps', 'lats'],
+				secondary: [ 'core']
+			},
+			recommended: {
+				reps: 12,
+				sets: 3,
+				rest: 30,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'Execute with resistance band'
+			}
+		},
+
+		12 : {
+			name: 'Cable crossovers',
+			targets: { 
+				primary: [ 'chest'],
+				secondary: [ 'shoulders', 'forearms']
+			},
+			recommended: {
+				reps: 25,
+				sets: 3,
+				rest: 30,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		13 : {
+			name: 'Farmers carries',
+			targets: { 
+				primary: [ 'traps', 'forearms'],
+				secondary: [ 'shoulders', 'lats', 'core', 'back']
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 80
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		14 : {
+			name: 'One arm farmers carries',
+			targets: { 
+				primary: [ 'traps', 'forearms'],
+				secondary: [ 'shoulders', 'lats', 'core', 'back']
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 40
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+
+		15 : {
+			name: 'Bicep curls',
+			targets: { 
+				primary: [ 'biceps', 'forearms'],
+				secondary: []
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 40
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'Variaties: Resistance band, Concentration, Standing barbell, Dead hang, Free moving concentration'
+			}
+		},
+
+		16 : {
+			name: 'Deadlift',
+			targets: { 
+				primary: [ 'lats', 'back', 'lowerback'],
+				secondary: ['hamstrings', 'glutes']
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 60
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}
+		},
+		
+		17 : {
+			name: 'Romanian deadlift',
+			targets: { 
+				primary: [ 'lats', 'back', 'lowerback'],
+				secondary: ['hamstrings', 'glutes']
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 60
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}		
+		},
+
+		18: {
+			name: 'Bent over rows',
+			targets: { 
+				primary: [ 'lats', 'traps', 'back'],
+				secondary: ['biceps']
+			},
+			recommended: {
+				seconds: 60,
+				sets: 3,
+				rest: 90,
+				weight: 60
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}		
+		}
+
+	};
+
+	excercises.list = (function(){
+
+		var list = [];
+		var excercise;
+
+		$.each(excercises.data, function(index){
+
+			excercise = excercises.data[index];
+			list.push( new Excercise( index, excercise.name, excercise.targets, excercise.recommended, excercise.details ) );
+
+		});
+
+		return list;
+
+	})();
+
+
+	/* old data
 	excercises.data = {
 
 		0 : {
@@ -232,53 +601,14 @@ angular.module('WorkoutApp').factory('excercises',function() {
 		}
 
 	};
-
-	excercises.list = (function(){
-
-		var id = 0,
-		list = [];
-
-		$.each(excercises.data, function(i){
-
-			var name = excercises.data[i].name,
-			variations = [],
-			targets = [[],[]],
-			movement = (excercises.data[i].targets[1].length > 0 || excercises.data[i].targets[0].length > 1) ? "Compound" : "Isolation",
-			recommended = excercises.data[i].recommended;
-			id++;
-
-			for (var x = 0; x < excercises.data[i].targets[0].length; x++ ) {
-				if ($.inArray(excercises.data[i].targets[0][x], targets[0]) === -1) {
-					targets[0].push(excercises.data[i].targets[0][x]);
-				}
-			}
-
-			for (var c = 0; c < excercises.data[i].targets[1].length; c++ ) {
-				if ($.inArray(excercises.data[i].targets[1][c], targets[1]) === -1) {
-					targets[1].push(excercises.data[i].targets[1][c]);
-				}
-			}
-			
-			list.push( new Excercise( id, i, name, targets, movement, recommended ) );
-
-			for (var y = 0, variationname; y < excercises.data[i].variations.length; y++ ) {
-				id++;
-				variationname = excercises.data[i].variations[y] + ' ' + name;
-				list.push( new Excercise( id, i, variationname, targets, movement ) );
-			}
-
-		});
-
-		return list;
-
-	})();
+	*/
 
 	excercises.filter = function (input, filtervalue) {
 
 		var filteredInput =[];
 
 		angular.forEach(input, function(excercise){
-			angular.forEach(excercise.targets[0], function(value, key){
+			angular.forEach(excercise.targets.primary, function(value, key){
 				if (value === filtervalue) {
 					filteredInput.push(excercise);
 				}

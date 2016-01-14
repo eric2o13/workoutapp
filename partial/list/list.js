@@ -57,9 +57,6 @@ angular.module('WorkoutApp').controller('ListCtrl',function($scope, $filter, exc
 			return selectedExcercises;
 
 		})();
-
-
-
 	};
 
 	$scope.createNewTraining = function(workout){
