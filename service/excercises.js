@@ -213,7 +213,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				weight: 0
 			},
 			details: {
-				video: 'http://youtu.be',
+				video: 'https://www.youtube.com/embed/CTB_Jb_UvII',
 				description: 'Execute with resistance band'
 			}
 		},
@@ -297,7 +297,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				secondary: []
 			},
 			recommended: {
-				seconds: 60,
+				reps: 12,
 				sets: 3,
 				rest: 90,
 				weight: 40
@@ -315,7 +315,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				secondary: ['hamstrings', 'glutes']
 			},
 			recommended: {
-				seconds: 60,
+				reps: 10,
 				sets: 3,
 				rest: 90,
 				weight: 60
@@ -333,7 +333,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				secondary: ['hamstrings', 'glutes']
 			},
 			recommended: {
-				seconds: 60,
+				reps: 12,
 				sets: 3,
 				rest: 90,
 				weight: 60
@@ -351,7 +351,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				secondary: ['biceps']
 			},
 			recommended: {
-				seconds: 60,
+				reps: 12,
 				sets: 3,
 				rest: 90,
 				weight: 60
@@ -360,7 +360,25 @@ angular.module('WorkoutApp').factory('excercises',function() {
 				video: 'http://youtu.be',
 				description: 'This is a classic excercise practiced by every weightlifter out there.'
 			}		
-		}
+		},
+
+		19: {
+			name: 'Push ups',
+			targets: { 
+				primary: [ 'chest' ],
+				secondary: ['lats', 'triceps', 'shoulders' ]
+			},
+			recommended: {
+				reps: 25,
+				sets: 3,
+				rest: 90,
+				weight: 0
+			},
+			details: {
+				video: 'http://youtu.be',
+				description: 'This is a classic excercise practiced by every weightlifter out there.'
+			}		
+		}		
 
 	};
 
@@ -380,8 +398,7 @@ angular.module('WorkoutApp').factory('excercises',function() {
 
 	})();
 
-
-	/* old data
+	/* old data puur ter referentie voor oefeningen.
 	excercises.data = {
 
 		0 : {

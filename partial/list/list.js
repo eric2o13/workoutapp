@@ -1,4 +1,4 @@
-angular.module('WorkoutApp').controller('ListCtrl',function($scope, $filter, excercises){
+angular.module('WorkoutApp').controller('ListCtrl',function($scope, excercises){
 
 	$scope.excercises = excercises;
 	$scope.training = {};

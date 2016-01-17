@@ -1,22 +1,23 @@
-angular.module('WorkoutApp').controller('DetailCtrl',function($scope){
+angular.module('WorkoutApp').controller('DetailCtrl', ['$scope','excercises','$routeParams', function($scope, excercises, $routeParams ) {
 
-	var DATA = 	{
-
-		name: 'Bench press',
-		targets: ['Chest', 'Triceps'],
-		variations: ["Inclined", "Declined"],
-		movement: "Compound"
-
-	};
-
-	$scope.workout = {};
+	$scope.excercises = excercises;
+	$scope.excercise = excercises.list[$routeParams.excersiceId];
 
 	var initialize = (function(){
 
-		Object.keys(DATA).forEach(function(key) {
-		    $scope.workout[key] = DATA[key];
-		});
+		console.log($scope.excercise);
+
+		if (typeof $scope.excercise.details.video != undefined) {
+			
+			$scope.video = $scope.excercise.details.video;
+			var youtubeid = $scope.video.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+			if(youtubeid != null) {
+			   $scope.youtubeid = youtubeid[1];
+			}
+
+		}
+
 
 	})();
 
-});
+}]);
